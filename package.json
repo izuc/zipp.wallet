@@ -1,11 +1,11 @@
 {
-    "name": "iota-devnet-wallet",
-    "description": "IOTA 2.0 DevNet Wallet",
-    "version": "0.7.0",
-    "author": "Martyn Janes <martyn.janes@iota.org>",
+    "name": "zipp-wallet",
+    "description": "ZIPP",
+    "version": "0.1.0",
+    "author": "",
     "repository": {
         "type": "git",
-        "url": "https://github.com/iotaledger/pollen-wallet.git"
+        "url": "https://github.com/izuc/zipp.wallet.git"
     },
     "license": "MIT",
     "dependencies": {
@@ -17,6 +17,7 @@
         "electron-window-state": "^5.0.3",
         "moment": "^2.29.1",
         "node-fetch": "^2.6.1",
+        "prop-types": "^15.8.1",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
         "react-icons": "^3.11.0",
@@ -25,12 +26,12 @@
         "tweetnacl": "^1.0.3"
     },
     "engines": {
-        "node": "16.x.x"
+        "node": "18.x.x"
     },
     "scripts": {
-        "start": "cross-env PORT=3001 craco start",
+        "start": "SET NODE_OPTIONS=--openssl-legacy-provider && cross-env PORT=3001 craco start",
         "lint": "eslint src --ext .tsx,.ts",
-        "build": "craco build",
+        "build": "SET NODE_OPTIONS=--openssl-legacy-provider && craco build",
         "test": "craco test",
         "eject": "react-scripts eject",
         "sass-lint": "sass-lint -v -c ./.sass-lint.yml",
@@ -47,6 +48,7 @@
         "not op_mini all"
     ],
     "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "@types/classnames": "^2.3.1",
         "@types/jest": "^26.0.23",
         "@types/node": "^14.14.45",
@@ -60,7 +62,7 @@
         "electron-builder": "^22.11.4",
         "electron-notarize": "^1.0.0",
         "husky": "^6.0.0",
-        "node-sass": "^6.0.0",
+        "sass": "^1.68.0",
         "sass-lint": "^1.13.1",
         "typescript": "^3.9.9",
         "wait-on": "^5.3.0"
@@ -73,9 +75,9 @@
     "homepage": "./",
     "main": "./public/electron.js",
     "build": {
-        "productName": "IOTA DevNet Wallet",
-        "artifactName": "iota-devnet-wallet-${version}.${ext}",
-        "copyright": "IOTA Foundation",
+        "productName": "ZIPP Wallet",
+        "artifactName": "zipp-wallet-${version}.${ext}",
+        "copyright": "ZIPP",
         "directories": {
             "output": "./out"
         },
@@ -90,7 +92,7 @@
             "node_modules/mkdirp/**/*.js",
             "node_modules/blakejs/**/*.js"
         ],
-        "appId": "org.iota.pollen-wallet",
+        "appId": "org.zipp.pollen-wallet",
         "afterSign": "./scripts/notarize.macos.js",
         "win": {
             "icon": "./public/logo.png"

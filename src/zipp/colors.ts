@@ -10,19 +10,19 @@ export class Colors {
     public static SIZE: number = 32;
 
     /**
-     * Color for IOTA token, all zeros.
+     * Color for ZIPP token, all zeros.
      */
-    public static IOTA_BUFFER: Buffer = Buffer.from(new Uint8Array(Colors.SIZE).fill(0));
+    public static ZIPP_BUFFER: Buffer = Buffer.from(new Uint8Array(Colors.SIZE).fill(0));
 
     /**
-     * Color for IOTA token, all zeros.
+     * Color for ZIPP token, all zeros.
      */
-    public static IOTA_BASE58: string = Base58.encode(Colors.IOTA_BUFFER);
+    public static ZIPP_BASE58: string = Base58.encode(Colors.ZIPP_BUFFER);
 
     /**
-     * Color for IOTA token, all zeros.
+     * Color for ZIPP token, all zeros.
      */
-    public static IOTA_NAME: string = "IOTA";
+    public static ZIPP_NAME: string = "ZIPP";
 
     /**
      * Color for new Colors.

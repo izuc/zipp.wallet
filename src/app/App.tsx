@@ -85,7 +85,7 @@ class App extends Component<AppProps, AppState> {
                 ${(!this.state.wallet || !this.state.wallet.seed) ? "bg-gradient" : ""}`}>
                 <header>
                     <Link className="brand" to="/">
-                        <img src={logoHeader} alt="IOTA 2.0 Devnet Logo" />
+                        <img src={logoHeader} alt="ZIPP Logo" />
                     </Link>
                     {ElectronHelper.isElectron() && (
                         <div className="window-controllers row">

@@ -69,7 +69,7 @@ jobs:
       if: matrix.os == 'ubuntu-18.04'
     
     - name: Sign AppImage (Linux)
-      run: echo $GPG_PASSPHRASE | gpg --pinentry-mode loopback --batch --passphrase-fd 0 --armor --detach-sign --default-key contact@iota.org iota-devnet-wallet-*.AppImage
+      run: echo $GPG_PASSPHRASE | gpg --pinentry-mode loopback --batch --passphrase-fd 0 --armor --detach-sign --default-key contact@zipp.org zipp-wallet-*.AppImage
       working-directory: out
       env:
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
@@ -84,19 +84,19 @@ jobs:
     
     - uses: actions/upload-artifact@v2
       with:
-        name: iota-devnet-wallet-win-${{ steps.package-version.outputs.prop}}
-        path: out/iota-devnet-wallet-${{ steps.package-version.outputs.prop}}.exe
+        name: zipp-wallet-win-${{ steps.package-version.outputs.prop}}
+        path: out/zipp-wallet-${{ steps.package-version.outputs.prop}}.exe
       if: matrix.os == 'windows-2019'
 
     - uses: actions/upload-artifact@v2
       with:
-        name: iota-devnet-wallet-mac-${{ steps.package-version.outputs.prop}}
-        path: out/iota-devnet-wallet-${{ steps.package-version.outputs.prop}}.dmg
+        name: zipp-wallet-mac-${{ steps.package-version.outputs.prop}}
+        path: out/zipp-wallet-${{ steps.package-version.outputs.prop}}.dmg
       if: matrix.os == 'macos-10.15'
 
     - uses: actions/upload-artifact@v2
       with:
-        name: iota-devnet-wallet-linux-${{ steps.package-version.outputs.prop}}
+        name: zipp-wallet-linux-${{ steps.package-version.outputs.prop}}
         path: |
-          out/iota-devnet-wallet-${{ steps.package-version.outputs.prop}}.AppImage
+          out/zipp-wallet-${{ steps.package-version.outputs.prop}}.AppImage
       if: matrix.os == 'ubuntu-18.04'

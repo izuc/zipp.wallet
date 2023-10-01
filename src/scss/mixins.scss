@@ -1,15 +1,17 @@
-$rem-base-font: 16px !default;
+$rem-base-font: 16 !default;
 
 @mixin font-size($font-size, $line-height: 0) {
-  font-size: $font-size;
-
-  // sass-lint:disable no-duplicate-properties
-  font-size: $font-size / $rem-base-font * 1rem;
+  @if type-of($font-size) == "number" and not unit($font-size) {
+    $font-size: $font-size * 1px;
+  }
+  
+  font-size: calc(#{$font-size} / #{$rem-base-font} * 1rem);
 
   @if $line-height > 0 {
-    line-height: $line-height;
-
-    // sass-lint:disable no-duplicate-properties
-    line-height: $line-height / $rem-base-font * 1rem;
+    @if type-of($line-height) == "number" and not unit($line-height) {
+      $line-height: $line-height * 1px;
+    }
+  
+    line-height: calc(#{$line-height} / #{$rem-base-font} * 1rem);
   }
 }

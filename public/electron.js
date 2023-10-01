@@ -25,7 +25,7 @@ function createWindow() {
       height: mainWindowState.height,
       backgroundColor: '#f6f8fc',
       frame: false,
-      title: "IOTA 2.0 DevNet Wallet",
+      title: "ZIPP Wallet",
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,

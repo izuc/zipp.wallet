@@ -2,14 +2,14 @@ import { blake2b } from "blakejs";
 import { ipcRenderer } from "electron";
 import { ServiceFactory } from "../factories/serviceFactory";
 import { MAX_ASSET_NAME_LENGTH, MAX_ASSET_SYMBOL_LENGTH } from "../helpers/utils";
-import { ApiClient } from "../iota/api/apiClient";
-import { ApiRegistryClient } from "../iota/api/apiRegistryClient";
-import { IAssetRequest } from "../iota/api/models/IAssetRequest";
-import { Colors } from "../iota/colors";
-import { Base58 } from "../iota/crypto/base58";
-import { ITransaction } from "../iota/models/ITransaction";
-import { Seed } from "../iota/seed";
-import { Transaction } from "../iota/transaction";
+import { ApiClient } from "../zipp/api/apiClient";
+import { ApiRegistryClient } from "../zipp/api/apiRegistryClient";
+import { IAssetRequest } from "../zipp/api/models/IAssetRequest";
+import { Colors } from "../zipp/colors";
+import { Base58 } from "../zipp/crypto/base58";
+import { ITransaction } from "../zipp/models/ITransaction";
+import { Seed } from "../zipp/seed";
+import { Transaction } from "../zipp/transaction";
 import { ISendFundsOptions } from "../models/ISendFundsOptions";
 import { ISendFundsResponse } from "../models/ISendFundsResponse";
 import { IUnlockBlock } from "../models/IUnlockBlock";
@@ -529,8 +529,8 @@ export class WalletService implements IWalletService {
 
         for (const [color, value] of Object.entries(b)) {
             let colorName = color;
-            if (color === Colors.IOTA_BASE58) {
-                colorName = Colors.IOTA_NAME;
+            if (color === Colors.ZIPP_BASE58) {
+                colorName = Colors.ZIPP_NAME;
             }
             balances.push({
                 color: colorName,
@@ -620,8 +620,8 @@ export class WalletService implements IWalletService {
 
         for (const dest in sendFundOptions.destinations) {
             for (const color in sendFundOptions.destinations[dest]) {
-                // if we want to color something then we need fresh IOTA
-                const col = color === Colors.MINT ? "IOTA" : color;
+                // if we want to color something then we need fresh ZIPP
+                const col = color === Colors.MINT ? "ZIPP" : color;
                 if (!requiredFunds[col]) {
                     requiredFunds[col] = sendFundOptions.destinations[dest][color];
                 } else {
@@ -769,7 +769,7 @@ export class WalletService implements IWalletService {
                 }
                 outputsByColor[address][color] += amount;
 
-                const col = color === Colors.MINT ? "IOTA" : color;
+                const col = color === Colors.MINT ? "ZIPP" : color;
 
                 consumedFunds[col] -= amount;
                 if (consumedFunds[col] === BigInt(0)) {
@@ -909,9 +909,9 @@ export class WalletService implements IWalletService {
                 this._addresses.push(address);
             }
 
-            assetsMap.IOTA = {
-                color: "IOTA",
-                name: "IOTA",
+            assetsMap.ZIPP = {
+                color: "ZIPP",
+                name: "ZIPP",
                 symbol: "I",
                 precision: 0
             };

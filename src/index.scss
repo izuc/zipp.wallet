@@ -20,7 +20,7 @@ html {
 }
 
 h1 {
-  @include font-size(32px, 40px);
+  @include font-size(32, 40);
 
   color: $dark-gray;
   font-family: $metropolis;
@@ -28,7 +28,7 @@ h1 {
 }
 
 h2 {
-  @include font-size(20px, 24px);
+  @include font-size(20, 24);
 
   color: $dark-gray;
   font-family: $metropolis;
@@ -37,7 +37,7 @@ h2 {
 }
 
 h3 {
-  @include font-size(16px, 20px);
+  @include font-size(16, 20);
 
   color: $gray-7;
   font-family: $metropolis;
@@ -45,7 +45,7 @@ h3 {
 }
 
 h4 {
-  @include font-size(16px);
+  @include font-size(16);
   color: $gray-4;
   font-family: $inter;
 }
@@ -64,7 +64,7 @@ body {
     height: 100%;
 
     .body-small {
-      @include font-size(12px);
+      @include font-size(12);
       color: $gray-4;
       font-family: $inter;
     }

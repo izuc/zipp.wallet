@@ -37,8 +37,8 @@ export class SettingsService implements ISettingsService {
 
         if (!this._settings) {
             this._settings = {
-                apiRegistryEndpoint: "http://asset-registry.tokenizedassetsdemo.iota.cafe",
-                apiEndpoint: "http://nodes.nectar.iota.cafe",
+                apiRegistryEndpoint: "http://asset-registry.zipp.org",
+                apiEndpoint: "http://nodes.zipp.org",
                 user: "",
                 password: "",
                 accessManaPledgeID: "",
@@ -48,7 +48,7 @@ export class SettingsService implements ISettingsService {
         }
 
         // always override local settings
-        this._settings.apiRegistryEndpoint = "http://asset-registry.tokenizedassetsdemo.iota.cafe";
+        this._settings.apiRegistryEndpoint = "http://asset-registry.zipp.org";
 
         return this._settings;
     }

@@ -38,7 +38,7 @@ export class Transaction {
 
             const bufferColors: Buffer[] = [];
             for (const balance of outputs[address]) {
-                const color = balance.color === Colors.IOTA_NAME ? Colors.IOTA_BUFFER : Base58.decode(balance.color);
+                const color = balance.color === Colors.ZIPP_NAME ? Colors.ZIPP_BUFFER : Base58.decode(balance.color);
                 if (balance.color === Colors.MINT) {
                     mintAddress = address;
                 }
@@ -126,7 +126,7 @@ export class Transaction {
 
             const bufferColors: Buffer[] = [];
             for (const balance of tx.outputs[address]) {
-                const color = balance.color === Colors.IOTA_NAME ? Colors.IOTA_BUFFER : Base58.decode(balance.color);
+                const color = balance.color === Colors.ZIPP_NAME ? Colors.ZIPP_BUFFER : Base58.decode(balance.color);
                 const colorValueBuffer = Buffer.alloc(8);
                 colorValueBuffer.writeBigUInt64LE(balance.value);
                 bufferColors.push(Buffer.concat([color, colorValueBuffer]));

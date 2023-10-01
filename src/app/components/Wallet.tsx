@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { Component, ReactNode } from "react";
-import logo from "../../assets/iota-devnet-logo.svg";
+import logo from "../../assets/zipp-logo.svg";
 import nectarDrop1 from "../../assets/nectar-drop-1.svg";
 import nectarDrop2 from "../../assets/nectar-drop-2.svg";
 import nectarDrop3 from "../../assets/nectar-drop-3.svg";
@@ -110,7 +110,7 @@ class Wallet extends Component<WalletProps, WalletState> {
                             <img src={hexagon} className="absolute-center" id="hexagon" alt="Nectar hexagon" />
                         </div>
                         <div className={`content-wrapper ${this.props.displayNodeMessage && "message-visible"}`}>
-                            <img src={logo} alt="IOTA 2.0 Devnet Logo" id="landing-banner" />
+                            <img src={logo} alt="ZIPP Logo" id="landing-banner" />
                             <button
                                 className="button--landing z-10"
                                 disabled={this.state.isBusy}
@@ -121,7 +121,7 @@ class Wallet extends Component<WalletProps, WalletState> {
                             {this.props.displayNodeMessage && <div className="row center middle margin-t-m z-1 node-connection-message">
                                 <div className="col w-40 sm-w-40 text-center body-small">
                                     <h4>Node Connection</h4>
-                                    <p className="margin-t-2">By default the wallet is configured to access the API of an IOTA 2.0 DevNet node running on http://nodes.nectar.iota.cafe</p>
+                                    <p className="margin-t-2">By default the wallet is configured to access the API of an ZIPP node running on http://nodes.zipp.org</p>
                                     <br />
                                     <p className="margin-t-2">To make it communicate with another node you can change the endpoint in the settings page.</p>
                                 </div>
@@ -603,7 +603,7 @@ class Wallet extends Component<WalletProps, WalletState> {
                     this.setState({
                         isBusyFaucet: false,
                         faucetIsError: true,
-                        faucetStatus: err.message
+                        faucetStatus: (err as Error).message
                     });
                 }
             });
@@ -633,7 +633,7 @@ class Wallet extends Component<WalletProps, WalletState> {
                                 BigInt(parseInt(this.state.newAssetAmount, 10))
                             );
                         }
-
+    
                         this.setState({
                             isBusyNewAsset: false,
                             newAssetAmount: "100",
@@ -642,15 +642,24 @@ class Wallet extends Component<WalletProps, WalletState> {
                             newAssetColor: undefined
                         });
                     } catch (err) {
-                        this.setState({
-                            errorNewAsset: err.message,
-                            isBusyNewAsset: false
-                        });
+                        if (err instanceof Error) {
+                            this.setState({
+                                errorNewAsset: err.message,
+                                isBusyNewAsset: false
+                            });
+                        } else {
+                            // Handle or log the unexpected error type
+                            this.setState({
+                                errorNewAsset: "An unexpected error occurred.",
+                                isBusyNewAsset: false
+                            });
+                        }
                     }
                 }
             }
         );
     }
+    
 
     /**
      * Delete an asset.
@@ -665,19 +674,28 @@ class Wallet extends Component<WalletProps, WalletState> {
             async () => {
                 try {
                     await this._walletService.deleteAsset(color);
-
+    
                     this.setState({
                         isBusyNewAsset: false
                     });
                 } catch (err) {
-                    this.setState({
-                        errorNewAsset: err.message,
-                        isBusyNewAsset: false
-                    });
+                    if (err instanceof Error) {
+                        this.setState({
+                            errorNewAsset: err.message,
+                            isBusyNewAsset: false
+                        });
+                    } else {
+                        // Handle or log the unexpected error type
+                        this.setState({
+                            errorNewAsset: "An unexpected error occurred.",
+                            isBusyNewAsset: false
+                        });
+                    }
                 }
             }
         );
     }
+    
 
     /**
      * Send funds to address.
@@ -696,7 +714,7 @@ class Wallet extends Component<WalletProps, WalletState> {
                             this.state.sendFundsColor,
                             BigInt(parseInt(this.state.sendFundsAmount, 10))
                         );
-
+    
                         this.setState({
                             isBusySendFunds: false,
                             sendFundsAmount: "100",
@@ -704,15 +722,24 @@ class Wallet extends Component<WalletProps, WalletState> {
                             sendFundsColor: undefined
                         });
                     } catch (err) {
-                        this.setState({
-                            errorSendFunds: err.message,
-                            isBusySendFunds: false
-                        });
+                        if (err instanceof Error) {
+                            this.setState({
+                                errorSendFunds: err.message,
+                                isBusySendFunds: false
+                            });
+                        } else {
+                            // Handle or log the unexpected error type
+                            this.setState({
+                                errorSendFunds: "An unexpected error occurred.",
+                                isBusySendFunds: false
+                            });
+                        }
                     }
                 }
             }
         );
     }
+    
 
     /**
      * Does the asset have a balance.

@@ -18,8 +18,8 @@ exports.default = async () => {
     }
 
     await notarize({
-        appBundleId: 'org.iota.pollen-wallet',
-        appPath: path.resolve(__dirname, '../out/mac/IOTA DevNet Wallet.app'),
+        appBundleId: 'org.zipp.pollen-wallet',
+        appPath: path.resolve(__dirname, '../out/mac/ZIPP Wallet.app'),
         appleId: APPLE_ID,
         appleIdPassword: APPLE_ID_PASSWORD,
         ascProvider: 'UG77RJKZHH',
